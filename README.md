@@ -1,9 +1,3 @@
----
-- Video Explanation: [FastAPI lab](https://www.youtube.com/watch?v=KReburHqRIQ&list=PLcS4TrUUc53LeKBIyXAaERFKBJ3dvc9GZ&index=4)
-- Blog: [FastAPI Lab-1](https://www.mlwithramin.com/blog/fastapi-lab1)
-
----
-
 # FastAPI ML Model Serving — 20 Newsgroups Text Classifier
 
 ## Overview
