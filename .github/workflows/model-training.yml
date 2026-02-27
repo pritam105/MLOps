@@ -5,6 +5,9 @@ on:
     branches:
       - Github-Actions-lab
 
+permissions:
+  contents: write
+
 jobs:
   retrain:
     if: github.actor != 'github-actions[bot]'  
