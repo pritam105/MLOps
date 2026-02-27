@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     # TF-IDF vectorizer
     vectorizer = TfidfVectorizer(
-        max_features=5000,
+        max_features=1000,
         stop_words="english"
     )
 
@@ -68,10 +68,10 @@ if __name__ == "__main__":
     print(f"Macro F1: {f1}")
 
     # Save artifacts
-    os.makedirs("Labs/Github_Labs/Lab2/models", exist_ok=True)
+    os.makedirs("Lab3Assignment-GithubActionsLab2/models", exist_ok=True)
 
-    model_path = f"Labs/Github_Labs/Lab2/models/model_{timestamp}_logreg.joblib"
-    vectorizer_path = f"Labs/Github_Labs/Lab2/models/vectorizer_{timestamp}.joblib"
+    model_path = f"Lab3Assignment-GithubActionsLab2/models/model_{timestamp}_logreg.joblib"
+    vectorizer_path = f"Lab3Assignment-GithubActionsLab2/models/vectorizer_{timestamp}.joblib"
 
     joblib.dump(model, model_path)
     joblib.dump(vectorizer, vectorizer_path)

@@ -14,8 +14,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     timestamp = args.timestamp
 
-    model_path = f"Labs/Github_Labs/Lab2/models/model_{timestamp}_logreg.joblib"
-    vectorizer_path = f"Labs/Github_Labs/Lab2/models/vectorizer_{timestamp}.joblib"
+    model_path = f"Lab3Assignment-GithubActionsLab2/models/model_{timestamp}_logreg.joblib"
+    vectorizer_path = f"Lab3Assignment-GithubActionsLab2/models/vectorizer_{timestamp}.joblib"
 
     if not os.path.exists(model_path):
         raise ValueError("Model file not found.")
@@ -47,9 +47,9 @@ if __name__ == "__main__":
         "macro_f1": float(f1)
     }
 
-    os.makedirs("Labs/Github_Labs/Lab2/metrics", exist_ok=True)
+    os.makedirs("Lab3Assignment-GithubActionsLab2/metrics", exist_ok=True)
 
-    metrics_path = f"Labs/Github_Labs/Lab2/metrics/{timestamp}_metrics.json"
+    metrics_path = f"Lab3Assignment-GithubActionsLab2/metrics/{timestamp}_metrics.json"
 
     with open(metrics_path, "w") as f:
         json.dump(metrics, f, indent=4)

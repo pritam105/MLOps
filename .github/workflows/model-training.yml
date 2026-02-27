@@ -1,0 +1,54 @@
+name: Github-Actions-lab
+
+on:
+  push:
+    branches:
+      - Github-Actions-lab
+
+jobs:
+  retrain:
+    if: github.actor != 'github-actions[bot]'  
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: pip install -r Lab3Assignment-GithubActionsLab2/requirements.txt
+
+    - name: Generate Timestamp
+      run: |
+        timestamp=$(date '+%Y%m%d%H%M%S')
+        echo "timestamp=$timestamp" >> $GITHUB_ENV
+
+    - name: Retrain Model
+      run: |
+        python Lab3Assignment-GithubActionsLab2/src/train_model.py --timestamp "$timestamp"
+
+    - name: Evaluate Model
+      run: |
+        python Lab3Assignment-GithubActionsLab2/src/evaluate_model.py --timestamp "$timestamp"
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.email "pritammane105@gmail.com"
+        git config --global user.name "pritam105"
+
+        model_file="Lab3Assignment-GithubActionsLab2/models/model_${timestamp}_logreg.joblib"
+        vectorizer_file="Lab3Assignment-GithubActionsLab2/models/vectorizer_${timestamp}.joblib"
+        metrics_file="Lab3Assignment-GithubActionsLab2/metrics/${timestamp}_metrics.json"
+
+        git add -f "$model_file" "$vectorizer_file" "$metrics_file"
+
+        if ! git diff --cached --quiet; then
+          git commit -m "Add 20NG model + metrics for $timestamp"
+          git push
+        else
+          echo "No changes to commit."
+        fi
