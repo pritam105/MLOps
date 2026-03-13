@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>20 Newsgroups Classifier</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 640px; margin: 60px auto; padding: 0 16px; }
+    h1   { font-size: 1.4rem; margin-bottom: 4px; }
+    p.sub { color: #555; font-size: 0.9rem; margin-bottom: 24px; }
+    textarea { width: 100%; height: 160px; padding: 10px; font-size: 1rem;
+               border: 1px solid #ccc; border-radius: 4px; resize: vertical; box-sizing: border-box; }
+    button { margin-top: 12px; padding: 10px 24px; font-size: 1rem;
+             background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #1d4ed8; }
+    .result { margin-top: 24px; padding: 14px 18px; background: #f0fdf4;
+              border: 1px solid #86efac; border-radius: 4px; }
+    .result strong { font-size: 1.1rem; color: #166534; }
+    .error  { margin-top: 24px; padding: 14px 18px; background: #fef2f2;
+              border: 1px solid #fca5a5; border-radius: 4px; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <h1>20 Newsgroups Text Classifier</h1>
+  <p class="sub">Enter any news text and the model will predict which newsgroup it belongs to.</p>
+
+  <form method="POST" action="/predict">
+    <textarea name="text" placeholder="Paste or type your news article text here...">{{ input_text or '' }}</textarea>
+    <br/>
+    <button type="submit">Classify</button>
+  </form>
+
+  {% if result %}
+  <div class="result">
+    Predicted newsgroup: <strong>{{ result }}</strong>
+  </div>
+  {% endif %}
+
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
+</body>
+</html>
